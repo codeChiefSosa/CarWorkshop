@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using CarWorkshop.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -70,8 +71,9 @@ namespace CarWorkshop.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
 
-        public async Task<IActionResult> OnPostAsync(string returnUrl = null)
+        public async Task<IActionResult> OnPostAsync(IFormCollection formCollection, string returnUrl = null)
         {
+            var isMechanic = formCollection["mechanic"].Equals("on") ? true : false;
             returnUrl = returnUrl ?? Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
@@ -82,6 +84,14 @@ namespace CarWorkshop.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User created a new account with password.");
 
+                    if (isMechanic)
+                    {
+                        await _userManager.AddToRoleAsync(user, "Mechanic");
+                    }
+                    else
+                    {
+                        await _userManager.AddToRoleAsync(user, "Customer");
+                    }
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(
