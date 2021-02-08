@@ -1,0 +1,37 @@
+﻿@model CarWorkshop.Models.Car
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<div class="row d-flex flex-column align-content-center">
+    <h3 class="mb-4">Please fill information about your car</h3>
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Brand" class="control-label"></label>
+                <span asp-validation-for="Brand" class="text-danger"></span>
+                <input asp-for="Brand" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="plate" class="control-label">Plates number</label>
+                <input name="plates" class="form-control"/>
+            </div>
+            <div class="form-group">
+                <label>List of errors (Separate each error with ',' sign)</label>
+                <textarea class="w-100 form-control" style="height:25vh"></textarea>
+            </div>
+            <div class="form-group text-center">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -78,6 +78,9 @@ namespace CarWorkshop
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(
+                    name: "car",
+                    pattern: "{controller=Car}/{action=Create}");
                 endpoints.MapRazorPages();
             });
             CreateRoles(serviceProvider);

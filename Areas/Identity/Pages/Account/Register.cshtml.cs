@@ -74,6 +74,7 @@ namespace CarWorkshop.Areas.Identity.Pages.Account
         public async Task<IActionResult> OnPostAsync(IFormCollection formCollection, string returnUrl = null)
         {
             var isMechanic = formCollection["mechanic"].Equals("on") ? true : false;
+
             returnUrl = returnUrl ?? Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
