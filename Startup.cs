@@ -32,7 +32,7 @@ namespace CarWorkshop
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            /*services.AddDefaultIdentity<ApplicationUser>(options =>
+            services.AddDefaultIdentity<ApplicationUser>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = false;
                 options.SignIn.RequireConfirmedPhoneNumber = false;
@@ -43,13 +43,16 @@ namespace CarWorkshop
                 options.Password.RequireUppercase = false;
 
             })
-                .AddEntityFrameworkStores<ApplicationDbContext>();*/
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
+
+
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, RoleManager<IdentityRole> roleManager, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
             {
@@ -77,6 +80,25 @@ namespace CarWorkshop
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+            CreateRoles(serviceProvider);
+            
+        }
+
+        private void CreateRoles(IServiceProvider serviceProvider)
+        {
+            var roleManager = serviceProvider.GetService<RoleManager<IdentityRole>>();
+            Task<IdentityResult> roleResult;
+
+            foreach (string role in this.Configuration.GetSection("Roles").Get<List<string>>())
+            {
+                Task<bool> hasRole = roleManager.RoleExistsAsync(role);
+                hasRole.Wait();
+                if (!hasRole.Result)
+                {
+                    roleResult = roleManager.CreateAsync(new IdentityRole(role));
+                    roleResult.Wait();
+                }
+            }
         }
     }
 }
