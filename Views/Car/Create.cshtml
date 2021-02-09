@@ -15,12 +15,13 @@
                 <input asp-for="Brand" class="form-control" />
             </div>
             <div class="form-group">
-                <label for="plate" class="control-label">Plates number</label>
-                <input name="plates" class="form-control"/>
+                <label asp-for="Plates" class="control-label">Plates number</label>
+                <span asp-validation-for="Plates" class="text-danger"></span>
+                <input asp-for="Plates" class="form-control"/>
             </div>
             <div class="form-group">
-                <label>List of errors (Separate each error with ',' sign)</label>
-                <textarea class="w-100 form-control" style="height:25vh"></textarea>
+                <label asp-for="RepairList">List of errors (Separate each error with ',' sign)</label>
+                <textarea asp-for="RepairList" class="w-100 form-control" style="height:25vh"></textarea>
             </div>
             <div class="form-group text-center">
                 <input type="submit" value="Create" class="btn btn-primary" />

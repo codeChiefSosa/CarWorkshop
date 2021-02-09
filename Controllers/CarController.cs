@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CarWorkshop.Data;
 using CarWorkshop.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace CarWorkshop.Controllers
 {
     public class CarController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public CarController(ApplicationDbContext context)
+        public CarController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: Car
@@ -54,8 +57,9 @@ namespace CarWorkshop.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Brand")] Car car)
+        public async Task<IActionResult> Create([Bind("Id,Brand,Plates,RepairList")] Car car)
         {
+            car.ApplicationUser = await _userManager.GetUserAsync(User);
             if (ModelState.IsValid)
             {
                 _context.Add(car);
