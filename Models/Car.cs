@@ -18,7 +18,10 @@ namespace CarWorkshop.Models
         [StringLength(30)]
         public string Brand { get; set; }
 
+        [Required]
         public string RepairList { get; set; }
+
+        public bool Repaired { get; set; } = false;
 
         public ApplicationUser ApplicationUser { get; set; }
     }

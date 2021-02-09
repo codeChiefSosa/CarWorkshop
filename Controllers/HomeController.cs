@@ -1,4 +1,5 @@
 ﻿using CarWorkshop.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,15 +12,22 @@ namespace CarWorkshop.Controllers
 {
     public class HomeController : Controller
     {
+        private UserManager<ApplicationUser> _userManager;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, UserManager<ApplicationUser> userManager)
         {
+            _userManager = userManager;
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var user = await _userManager.GetUserAsync(User);
+            if (!(user is null))
+            {
+                ViewData["UserId"] = user.Id;
+            }
             return View();
         }
 

@@ -3,15 +3,30 @@
     ViewData["Title"] = "Home Page";
 }
 @using Microsoft.AspNetCore.Identity
+@using CarWorkshop.Data
 @inject UserManager<ApplicationUser> UserManager
+@inject ApplicationDbContext Context
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    @if(User.IsInRole("Mechanic"))
+    @if (User.IsInRole("Customer"))
     {
-        <h2>HELLO MECHANIC</h2>
+        <h2>
+            <a asp-controller="Car"
+               asp-action="Create">
+            Add car!
+            </a>
+        </h2>
+
+        <h2>
+            <a asp-controller="ApplicationUser"
+            asp-action="Cars">
+                Check your cars!
+            </a>
+        </h2>
     }
-    <a asp-controller="Car"
-       asp-action="Create">Add car!</a>
+
+    @if (User.IsInRole("Mechanic"))
+    {
+        <h2>You have @Context.Cars.Where(c => c.Repaired == false).Count() cars that are waiting for a repair!</h2>
+    }
 </div>

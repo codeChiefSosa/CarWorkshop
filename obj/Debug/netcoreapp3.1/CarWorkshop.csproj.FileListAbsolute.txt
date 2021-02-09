@@ -193,3 +193,4 @@ C:\Users\Kuba\source\repos\CarWorkshop\CarWorkshop\obj\Debug\netcoreapp3.1\Razor
 C:\Users\Kuba\source\repos\CarWorkshop\CarWorkshop\obj\Debug\netcoreapp3.1\Razor\Views\Car\Details.cshtml.g.cs
 C:\Users\Kuba\source\repos\CarWorkshop\CarWorkshop\obj\Debug\netcoreapp3.1\Razor\Views\Car\Edit.cshtml.g.cs
 C:\Users\Kuba\source\repos\CarWorkshop\CarWorkshop\obj\Debug\netcoreapp3.1\Razor\Views\Car\Index.cshtml.g.cs
+C:\Users\Kuba\source\repos\CarWorkshop\CarWorkshop\obj\Debug\netcoreapp3.1\Razor\Views\ApplicationUser\Cars.cshtml.g.cs
