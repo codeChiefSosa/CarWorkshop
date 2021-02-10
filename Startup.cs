@@ -81,6 +81,11 @@ namespace CarWorkshop
                 endpoints.MapControllerRoute(
                     name: "car-create",
                     pattern: "{controller=Car}/{action=Create}");
+                endpoints.MapControllerRoute(
+                    name: "repair",
+                    pattern: "/repair",
+                    defaults: new { controller = "Car", action = "Index" }
+                    );
                     
                 endpoints.MapRazorPages();
 

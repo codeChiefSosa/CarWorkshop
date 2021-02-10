@@ -19,12 +19,15 @@
             </div>
             <hr/>
             <h5 class="text-center">List of faults:</h5>
-            @foreach(var fault in Model.RepairList.Split(","))
+            @if(!String.IsNullOrEmpty(Model.RepairList))
             {
-                <div id="fault"class="d-flex justify-content-between m-3">
-                    <p>@fault</p>
-                    <input class="btn btn-primary w-25" type="button" value="Repair" onclick="myFunction(this)" />
-                </div>
+            @foreach (var fault in Model.RepairList.Split(","))
+            {
+        <div id="" class="d-flex justify-content-between m-3">
+            <p>@fault</p>
+            <input class="btn btn-primary w-25" type="button" value="Repair" onclick="removeFault('@Model.Id','@fault',this)" />
+        </div>
+                }
             }
         </form>
     </div>

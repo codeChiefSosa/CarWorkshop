@@ -6,4 +6,20 @@ function myFunction(elem) {
     var x = elem.parentNode;
     x.style.visibility = "hidden";
 }
-// Write your JavaScript code.
+
+function removeFault(carId, fault, elem) {
+    var test = elem;
+    $.ajax({
+        method: "POST",
+        url: "/Car/RemoveFault",
+        type: "text",
+        data: {
+            fault: fault,
+            carId: carId,
+        },
+        success: function (test) {
+            var x = elem.parentNode;
+            x.style.visibility = "hidden";
+        }
+    });
+}

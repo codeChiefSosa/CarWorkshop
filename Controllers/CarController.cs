@@ -153,6 +153,34 @@ namespace CarWorkshop.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpPost]
+        public async Task<IActionResult> RemoveFault(string carId, string fault)
+        {
+
+            var car = await _context.Cars.FirstOrDefaultAsync(c => c.Id == Int32.Parse(carId));
+
+            var faultsList = car.RepairList.Split(',').ToList();
+            faultsList.Remove(fault);
+
+            car.RepairList = String.Join(",", faultsList);
+
+            if(!faultsList.Any())
+            {
+                car.Repaired = true;
+            }
+
+            try
+            {
+                _context.Update(car);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+            }
+
+            return new EmptyResult();
+        }
+
         private bool CarExists(int id)
         {
             return _context.Cars.Any(e => e.Id == id);
