@@ -1,4 +1,5 @@
 ﻿using CarWorkshop.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace CarWorkshop.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private UserManager<ApplicationUser> _userManager;
@@ -27,6 +29,7 @@ namespace CarWorkshop.Controllers
             if (!(user is null))
             {
                 ViewData["UserId"] = user.Id;
+                
             }
             return View();
         }

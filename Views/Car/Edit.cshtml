@@ -4,23 +4,28 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
-
-<h4>Car</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
+<div class="row d-flex flex-column align-content-center">
+    <div class="col-md-6 d-flex justify-content-center border border-primary">
+        <form asp-action="Edit" class="w-100">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Brand" class="control-label"></label>
-                <input asp-for="Brand" class="form-control" />
-                <span asp-validation-for="Brand" class="text-danger"></span>
+            <div class="form-group text-center">
+                <div class="control-label font-weight-bold">
+                    Brand: <span class="font-weight-normal">@Model.Brand</span>
+                </div>
+                <div class="control-label font-weight-bold">
+                    License plates: <span class="font-weight-normal">@Model.Plates</span>
+                </div>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
+            <hr/>
+            <h5 class="text-center">List of faults:</h5>
+            @foreach(var fault in Model.RepairList.Split(","))
+            {
+                <div id="fault"class="d-flex justify-content-between m-3">
+                    <p>@fault</p>
+                    <input class="btn btn-primary w-25" type="button" value="Repair" onclick="myFunction(this)" />
+                </div>
+            }
         </form>
     </div>
 </div>
@@ -30,5 +35,8 @@
 </div>
 
 @section Scripts {
+
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
 }

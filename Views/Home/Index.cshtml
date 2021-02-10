@@ -28,5 +28,11 @@
     @if (User.IsInRole("Mechanic"))
     {
         <h2>You have @Context.Cars.Where(c => c.Repaired == false).Count() cars that are waiting for a repair!</h2>
+        <h3>
+            <a asp-controller="Car"
+               asp-action="Index">
+                Click here to review them.
+            </a>
+        </h3>
     }
 </div>

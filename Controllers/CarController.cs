@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using CarWorkshop.Data;
 using CarWorkshop.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CarWorkshop.Controllers
 {
+    [Authorize]
     public class CarController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -23,9 +25,10 @@ namespace CarWorkshop.Controllers
         }
 
         // GET: Car
+        [Authorize(Roles = "Mechanic")]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Cars.ToListAsync());
+            return View(await _context.Cars.Where(c => c.Repaired == false).ToListAsync());
         }
 
         // GET: Car/Details/5
@@ -69,6 +72,7 @@ namespace CarWorkshop.Controllers
             return View(car);
         }
 
+        [Authorize(Roles = "Mechanic")]
         // GET: Car/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
