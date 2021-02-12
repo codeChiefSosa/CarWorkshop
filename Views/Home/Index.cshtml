@@ -13,13 +13,13 @@
         <h2>
             <a asp-controller="Car"
                asp-action="Create">
-            Add car!
+                Add car!
             </a>
         </h2>
 
         <h2>
             <a asp-controller="ApplicationUser"
-            asp-action="Cars">
+               asp-action="Cars">
                 Check your cars!
             </a>
         </h2>
@@ -36,3 +36,14 @@
         </h3>
     }
 </div>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $.noConflict();
+        $(function () {
+            $("#datepicker").datepicker();
+
+        });
+    </script>
+}

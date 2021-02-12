@@ -23,3 +23,12 @@ function removeFault(carId, fault, elem) {
         }
     });
 }
+
+function showDate() {
+    $.noConflict();
+    $(function () {
+        $("#datepicker").datepicker();
+
+    });
+}
+
