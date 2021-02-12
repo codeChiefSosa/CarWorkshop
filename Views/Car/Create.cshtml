@@ -21,6 +21,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="RepairList">List of errors (Separate each error with ',' sign)</label>
+                <span asp-validation-for="RepairList" class="text-danger"></span>
                 <textarea asp-for="RepairList" class="w-100 form-control" style="height:25vh"></textarea>
             </div>
             <div class="form-group text-center">

@@ -19,7 +19,21 @@
                 <tr>
                     <td>@car.Brand</td>
                     <td>@car.Plates</td>
-                    <td>@car.Repaired</td>
+                    @if(car.Repaired == true)
+                    {
+                        <td>
+                            <form asp-controller="Car" asp-action="Delete" method="POST">
+                                <input type="hidden" name="Id" value="@car.Id"/>
+                                <button type="submit" class="btn btn-success">
+                                    Claim!
+                                </button>
+                            </form>
+                        </td>
+                    }
+                    else
+                    {
+                        <td class="text-danger">In progress</td>
+                    }
                 </tr>
             }
         </tbody>

@@ -150,7 +150,7 @@ namespace CarWorkshop.Controllers
             var car = await _context.Cars.FindAsync(id);
             _context.Cars.Remove(car);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Cars", "ApplicationUser");
         }
 
         [HttpPost]
