@@ -86,6 +86,11 @@ namespace CarWorkshop
                     pattern: "/repair",
                     defaults: new { controller = "Car", action = "Index" }
                     );
+                endpoints.MapControllerRoute(
+                    name: "my-cars",
+                    pattern: "/myCars",
+                    defaults: new { controller = "ApplicationUser", action = "Cars" }
+                    );
                     
                 endpoints.MapRazorPages();
 

@@ -1,9 +1,10 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿
+@model List<Car>
 @{
-   
-
+    <div class="d-flex flex-column font-weight-bold">
+        <div>Amount of cars already repaired: </div>
+    <div id="progressbar" class="mb-4" data-value="@ViewData["AmountOfRepairedCars"]"></div>
+    </div>
     <table class="table">
         <thead class="thead-dark">
             <tr>
@@ -13,7 +14,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (Car car in ViewData["CarCollection"] as IEnumerable<Car>)
+            @foreach (Car car in Model)
             {
                 <tr>
                     <td>@car.Brand</td>
@@ -24,3 +25,17 @@
         </tbody>
     </table>
 }
+
+@section Scripts{
+    <script>
+        $.noConflict();
+    $(function () {
+        var bar = document.getElementById("progressbar");
+        var valueString = bar.getAttribute("data-value");
+        var valueNumber = parseFloat(valueString);
+        $("#progressbar").progressbar({
+            value: valueNumber
+        });
+    });
+    </script>
+ }

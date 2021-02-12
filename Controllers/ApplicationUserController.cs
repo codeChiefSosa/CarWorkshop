@@ -28,8 +28,11 @@ namespace CarWorkshop.Controllers
         public async Task<IActionResult> Cars()
         {
             var user = await _userManager.GetUserAsync(User);
-            ViewData["CarCollection"] = _context.Cars.Where(c => c.ApplicationUser.Id == user.Id);
-            return View();
+            //ViewData["CarCollection"] = _context.Cars.Where(c => c.ApplicationUser.Id == user.Id);
+            var cars = _context.Cars.Where(c => c.ApplicationUser.Id == user.Id).ToList();
+            int numberOfRepairedCars = user.Cars.Where(c => c.Repaired == true).Count() * 100;
+            ViewData["AmountOfRepairedCars"] = numberOfRepairedCars / cars.Count;
+            return View(cars);
         }
     }
 }
