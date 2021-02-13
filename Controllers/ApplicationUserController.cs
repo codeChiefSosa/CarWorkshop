@@ -39,7 +39,15 @@ namespace CarWorkshop.Controllers
                 _cache.Set(cacheKey, cars, TimeSpan.FromMinutes(1));
             }
             int numberOfRepairedCars = cars.Where(c => c.Repaired == true).Count() * 100;
-            ViewData["AmountOfRepairedCars"] = numberOfRepairedCars / cars.Count;
+
+            try
+            {
+                ViewData["AmountOfRepairedCars"] = numberOfRepairedCars / cars.Count;
+            }
+            catch(DivideByZeroException e)
+            {
+                ViewData["AmountOfRepairedCars"] = 0;
+            }
             return View(cars);
         }
     }

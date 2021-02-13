@@ -121,10 +121,13 @@
     <value>Dodaj samochod!</value>
   </data>
   <data name="CarWaitMessage" xml:space="preserve">
-    <value>samochodów oczekujących na naprawe!</value>
+    <value>samochody oczekujących na naprawe!</value>
   </data>
   <data name="CheckMessage" xml:space="preserve">
     <value>Sprawdz stan napraw!</value>
+  </data>
+  <data name="ReviewMessage" xml:space="preserve">
+    <value>Sprawdz samochody!</value>
   </data>
   <data name="YouHave" xml:space="preserve">
     <value>Masz</value>

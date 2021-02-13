@@ -18,11 +18,12 @@ namespace CarWorkshop.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
-
+        private readonly IMemoryCache _cache;
         public CarController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IMemoryCache cache)
         {
             _context = context;
             _userManager = userManager;
+            _cache = cache;
         }
 
         // GET: Car
@@ -80,6 +81,12 @@ namespace CarWorkshop.Controllers
             var car = await _context.Cars.FindAsync(id);
             _context.Cars.Remove(car);
             await _context.SaveChangesAsync();
+            var user = await _userManager.GetUserAsync(User);
+            string cacheKey = $"Cars:{user.Id}";
+            if (_cache.Get(cacheKey) != null)
+            {
+                _cache.Remove(cacheKey);
+            }
             return RedirectToAction("Cars", "ApplicationUser");
         }
 

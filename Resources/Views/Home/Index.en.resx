@@ -126,6 +126,9 @@
   <data name="CheckMessage" xml:space="preserve">
     <value>Check your cars!</value>
   </data>
+  <data name="ReviewMessage" xml:space="preserve">
+    <value>Review cars!</value>
+  </data>
   <data name="YouHave" xml:space="preserve">
     <value>You have</value>
   </data>
