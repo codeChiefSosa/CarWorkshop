@@ -1,6 +1,8 @@
 ﻿using CarWorkshop.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -33,7 +35,22 @@ namespace CarWorkshop.Controllers
             }
             return View();
         }
+        [HttpPost]
+        public IActionResult ChangeCookieLanguageToPl()
+        {
+            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName, CookieRequestCultureProvider.MakeCookieValue(new RequestCulture("pl")),
+                new CookieOptions { Expires = DateTimeOffset.Now.AddDays(1) });
+            return RedirectToAction(nameof(Index));
+        }
 
+        [HttpPost]
+        public IActionResult ChangeCookieLanguageToEn()
+        {
+            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName, CookieRequestCultureProvider.MakeCookieValue(new RequestCulture("en")),
+                new CookieOptions { Expires = DateTimeOffset.Now.AddDays(1) });
+
+            return RedirectToAction(nameof(Index));
+        }
         public IActionResult Privacy()
         {
             return View();

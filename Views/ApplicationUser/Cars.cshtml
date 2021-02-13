@@ -1,16 +1,18 @@
 ﻿
 @model List<Car>
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer ViewLocalizer
 @{
     <div class="d-flex flex-column font-weight-bold">
-        <div>Amount of cars already repaired: </div>
-    <div id="progressbar" class="mb-4" data-value="@ViewData["AmountOfRepairedCars"]"></div>
+        <div>@ViewLocalizer["amount"] </div>
+        <div id="progressbar" class="mb-4" data-value="@ViewData["AmountOfRepairedCars"]"></div>
     </div>
     <table class="table">
         <thead class="thead-dark">
             <tr>
-                <th scope="col">Brand</th>
-                <th scope="col">Licence Plates</th>
-                <th scope="col">Repair status</th>
+                <th scope="col">@ViewLocalizer["brand"]</th>
+                <th scope="col">@ViewLocalizer["plates"]</th>
+                <th scope="col">@ViewLocalizer["status"]</th>
             </tr>
         </thead>
         <tbody>
@@ -19,20 +21,20 @@
                 <tr>
                     <td>@car.Brand</td>
                     <td>@car.Plates</td>
-                    @if(car.Repaired == true)
+                    @if (car.Repaired == true)
                     {
                         <td>
                             <form asp-controller="Car" asp-action="Delete" method="POST">
-                                <input type="hidden" name="Id" value="@car.Id"/>
+                                <input type="hidden" name="Id" value="@car.Id" />
                                 <button type="submit" class="btn btn-success">
-                                    Claim!
+                                    @ViewLocalizer["claim"]
                                 </button>
                             </form>
                         </td>
                     }
                     else
                     {
-                        <td class="text-danger">In progress</td>
+                <td class="text-danger">@ViewLocalizer["progress"]</td>
                     }
                 </tr>
             }
@@ -43,13 +45,13 @@
 @section Scripts{
     <script>
         $.noConflict();
-    $(function () {
-        var bar = document.getElementById("progressbar");
-        var valueString = bar.getAttribute("data-value");
-        var valueNumber = parseFloat(valueString);
-        $("#progressbar").progressbar({
-            value: valueNumber
+        $(function () {
+            var bar = document.getElementById("progressbar");
+            var valueString = bar.getAttribute("data-value");
+            var valueNumber = parseFloat(valueString);
+            $("#progressbar").progressbar({
+                value: valueNumber
+            });
         });
-    });
     </script>
- }
+}

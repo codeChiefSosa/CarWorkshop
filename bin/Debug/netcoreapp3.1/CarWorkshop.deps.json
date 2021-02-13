@@ -298,6 +298,14 @@
         "runtime": {
           "CarWorkshop.dll": {}
         },
+        "resources": {
+          "en/CarWorkshop.resources.dll": {
+            "locale": "en"
+          },
+          "pl/CarWorkshop.resources.dll": {
+            "locale": "pl"
+          }
+        },
         "compile": {
           "CarWorkshop.dll": {}
         }

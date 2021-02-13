@@ -16,14 +16,20 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <img src="~/images/workshop-logo.svg" class="img-fluid" style="max-height:25px"/>
+                <img src="~/images/workshop-logo.svg" class="img-fluid" style="max-height:25px" />
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CarWorkshop</a>
+                <form asp-action="ChangeCookieLanguageToEn" asp-controller="Home">
+                    <input type="image" src="~/images/uk-flag.svg" alt="Submit" class="img-fluid border border-secondary" style="max-height:25px" width="25" />
+                </form>
+                <form asp-action="ChangeCookieLanguageToPl" asp-controller="Home">
+                    <input type="image" src="~/images/poland-flag.svg" alt="Submit" class="img-fluid border border-secondary" style="max-height:25px" width="25" />
+                </form>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />                   
+                    <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>

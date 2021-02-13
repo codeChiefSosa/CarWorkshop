@@ -4,8 +4,13 @@
 }
 @using Microsoft.AspNetCore.Identity
 @using CarWorkshop.Data
+@using Microsoft.AspNetCore.Mvc.Localization
+@using System.Globalization 
 @inject UserManager<ApplicationUser> UserManager
 @inject ApplicationDbContext Context
+
+@inject IViewLocalizer ViewLocalizer
+
 
 <div class="text-center">
     @if (User.IsInRole("Customer"))
@@ -13,25 +18,25 @@
         <h2>
             <a asp-controller="Car"
                asp-action="Create">
-                Add car!
+                @ViewLocalizer["AddMessage"]
             </a>
         </h2>
 
         <h2>
             <a asp-controller="ApplicationUser"
                asp-action="Cars">
-                Check your cars!
+                @ViewLocalizer["CheckMessage"]
             </a>
         </h2>
     }
 
     @if (User.IsInRole("Mechanic"))
     {
-        <h2>You have @Context.Cars.Where(c => c.Repaired == false).Count() cars that are waiting for a repair!</h2>
+        <h2>@ViewLocalizer["YouHave"] @Context.Cars.Where(c => c.Repaired == false).Count() @ViewLocalizer["CarWaitMessage"]</h2>
         <h3>
             <a asp-controller="Car"
                asp-action="Index">
-                Click here to review them.
+                @ViewLocalizer["ReviewMessage"]
             </a>
         </h3>
     }

@@ -195,3 +195,14 @@ C:\Users\Kuba\source\repos\CarWorkshop\CarWorkshop\obj\Debug\netcoreapp3.1\CarWo
 C:\Users\Kuba\source\repos\CarWorkshop\CarWorkshop\obj\Debug\netcoreapp3.1\CarWorkshop.dll
 C:\Users\Kuba\source\repos\CarWorkshop\CarWorkshop\obj\Debug\netcoreapp3.1\CarWorkshop.pdb
 C:\Users\Kuba\source\repos\CarWorkshop\CarWorkshop\obj\Debug\netcoreapp3.1\CarWorkshop.genruntimeconfig.cache
+C:\Users\Kuba\source\repos\CarWorkshop\CarWorkshop\obj\Debug\netcoreapp3.1\CarWorkshop.csproj.GenerateResource.cache
+C:\Users\Kuba\source\repos\CarWorkshop\CarWorkshop\bin\Debug\netcoreapp3.1\en\CarWorkshop.resources.dll
+C:\Users\Kuba\source\repos\CarWorkshop\CarWorkshop\bin\Debug\netcoreapp3.1\pl\CarWorkshop.resources.dll
+C:\Users\Kuba\source\repos\CarWorkshop\CarWorkshop\obj\Debug\netcoreapp3.1\CarWorkshop.Resources.Views.Home.Index.en.resources
+C:\Users\Kuba\source\repos\CarWorkshop\CarWorkshop\obj\Debug\netcoreapp3.1\CarWorkshop.Resources.Views.Home.Index.pl.resources
+C:\Users\Kuba\source\repos\CarWorkshop\CarWorkshop\obj\Debug\netcoreapp3.1\en\CarWorkshop.resources.dll
+C:\Users\Kuba\source\repos\CarWorkshop\CarWorkshop\obj\Debug\netcoreapp3.1\pl\CarWorkshop.resources.dll
+C:\Users\Kuba\source\repos\CarWorkshop\CarWorkshop\obj\Debug\netcoreapp3.1\CarWorkshop.Resources.Views.Car.Create.en.resources
+C:\Users\Kuba\source\repos\CarWorkshop\CarWorkshop\obj\Debug\netcoreapp3.1\CarWorkshop.Resources.Views.Car.Create.pl.resources
+C:\Users\Kuba\source\repos\CarWorkshop\CarWorkshop\obj\Debug\netcoreapp3.1\CarWorkshop.Resources.Views.ApplicationUser.Cars.en.resources
+C:\Users\Kuba\source\repos\CarWorkshop\CarWorkshop\obj\Debug\netcoreapp3.1\CarWorkshop.Resources.Views.ApplicationUser.Cars.pl.resources

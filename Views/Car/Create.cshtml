@@ -4,30 +4,31 @@
     ViewData["Title"] = "Create";
 }
 
-
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer ViewLocalizer
 <div class="row d-flex flex-column align-content-center">
-    <h3 class="mb-4">Please fill information about your car</h3>
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Brand" class="control-label"></label>
-                <span asp-validation-for="Brand" class="text-danger"></span>
-                <input asp-for="Brand" id="tags" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label asp-for="Plates" class="control-label">Plates number</label>
-                <span asp-validation-for="Plates" class="text-danger"></span>
-                <input asp-for="Plates" class="form-control"/>
-            </div>
-            <div class="form-group">
-                <label asp-for="RepairList">List of errors (Separate each error with ',' sign)</label>
-                <span asp-validation-for="RepairList" class="text-danger"></span>
-                <textarea asp-for="RepairList" class="w-100 form-control" style="height:25vh"></textarea>
-            </div>
-            <div class="form-group text-center">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+    <h3 class="mb-4">@ViewLocalizer["fill"]</h3>
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Brand" class="control-label">@ViewLocalizer["brand"]</label>
+            <span asp-validation-for="Brand" class="text-danger"></span>
+            <input asp-for="Brand" id="tags" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Plates" class="control-label">@ViewLocalizer["plates"]</label>
+            <span asp-validation-for="Plates" class="text-danger"></span>
+            <input asp-for="Plates" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="RepairList">@ViewLocalizer["errors"]</label>
+            <span asp-validation-for="RepairList" class="text-danger"></span>
+            <textarea asp-for="RepairList" class="w-100 form-control" style="height:25vh"></textarea>
+        </div>
+        <div class="form-group text-center">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </form>
 </div>
 <div>
     <a asp-controller="Home" asp-action="Index">Back to List</a>
@@ -36,26 +37,26 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
-<script>
-  $.noConflict();
-  $( function() {
-    var availableTags = [
-        "Alfa Romeo",
-        "Audi",
-        "BMW",
-        "Bentley",
-        "Kia",
-        "Lexus",
-        "Nissan",
-        "Porsche",
-        "Subaru",
-        "Tesla",
-        "Totota",
-    ];
-    $( "#tags" ).autocomplete({
-      source: availableTags
-    });
-  } );
-</script>
+    <script>
+        $.noConflict();
+        $(function () {
+            var availableTags = [
+                "Alfa Romeo",
+                "Audi",
+                "BMW",
+                "Bentley",
+                "Kia",
+                "Lexus",
+                "Nissan",
+                "Porsche",
+                "Subaru",
+                "Tesla",
+                "Totota",
+            ];
+            $("#tags").autocomplete({
+                source: availableTags
+            });
+        });
+    </script>
 
 }
